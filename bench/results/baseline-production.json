@@ -1,0 +1,49 @@
+{
+  "mode": "production",
+  "node": "v22.18.0",
+  "results": {
+    "1000": {
+      "load: addMany N rows": 0.9866,
+      "add 1 row": 0.5386,
+      "update 1 row": 0.0138,
+      "remove 1 row": 0.2192,
+      "update 1 row, 100 row watchers + rows watcher": 0.2724,
+      "find 1 user's credits (scan)": 0.0301,
+      "bank: add 1 credit (relation + rollup)": 1.2669,
+      "bank: update 1 credit amount": 0.9514,
+      "bank: remove 1 user (cascade, 2 credits)": 0.9395,
+      "bank: transaction of 3 changes": 2.6607,
+      "bank: update 1 row with an onCommit listener": 1.2257,
+      "sync N rows, nothing changed": 0.9383,
+      "sync N rows, 1 changed": 0.8674,
+      "store.snapshot()": 0.1693
+    },
+    "10000": {
+      "load: addMany N rows": 2.9775,
+      "add 1 row": 2.8958,
+      "update 1 row": 2.9174,
+      "remove 1 row": 2.1681,
+      "update 1 row, 100 row watchers + rows watcher": 3.6171,
+      "find 1 user's credits (scan)": 0.1058,
+      "bank: add 1 credit (relation + rollup)": 13.6541,
+      "bank: update 1 credit amount": 13.5382,
+      "bank: remove 1 user (cascade, 2 credits)": 11.1217,
+      "bank: transaction of 3 changes": 25.3768,
+      "bank: update 1 row with an onCommit listener": 9.6131,
+      "sync N rows, nothing changed": 5.3143,
+      "sync N rows, 1 changed": 4.1152,
+      "store.snapshot()": 0.2589
+    },
+    "100000": {
+      "load: addMany N rows": 60.7411,
+      "add 1 row": 70.3476,
+      "update 1 row": 70.8954,
+      "remove 1 row": 45.8458,
+      "update 1 row, 100 row watchers + rows watcher": 82.1042,
+      "find 1 user's credits (scan)": 1.6556,
+      "sync N rows, nothing changed": 113.8333,
+      "sync N rows, 1 changed": 84.7483,
+      "store.snapshot()": 6.1099
+    }
+  }
+}
