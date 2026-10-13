@@ -1,6 +1,6 @@
 {
   "name": "rawstate",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Raw state, kept honest: plain data with types, atomic transactions, relations and rules, and checked borders. No dependencies, about 9 KB gzipped.",
   "keywords": [
     "rawstate",
@@ -22,7 +22,8 @@
     "validation",
     "standard-schema",
     "ssr",
-    "rawstate"
+    "local-first",
+    "devtools"
   ],
   "homepage": "https://github.com/selbstnull/rawstate-core#readme",
   "bugs": {

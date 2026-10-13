@@ -19,6 +19,27 @@ Collection of users and twice as many credits, with a relation and a `rollup`. N
 | `sync` of 100 000 rows, nothing changed | | | 69 ms |
 | load 100 000 rows (`addMany`) | | | 63 ms |
 
+## Against other libraries
+
+The same scenarios on Zustand, Redux Toolkit, Valtio, MobX and TanStack DB (`bench-compare/` in the repository; the full tables are in `bench-compare/results.md`). Production mode, Node 22, median of several runs.
+
+| 100 000 rows | rawstate | Zustand | Redux Toolkit | Valtio | MobX | TanStack DB |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| update 1 row | 0.01 ms | 41 ms | 94 ms | ~1 ms¹ | 0.001 ms | ~1 ms¹ |
+| update 1 row, 100 watchers | 0.04 ms | 38 ms | 87 ms | ~1 ms¹ | 0.003 ms | ~1 ms¹ |
+| 1000 updates in one batch | 9.5 ms | 43 ms | 101 ms | ~1 ms¹ | 0.2 ms | ~4 ms¹ |
+| load | 34 ms | 26 ms | 104 ms | 632 ms | 90 ms | 247 ms |
+| find a user's 2 credits among 200 000 | 2 µs | 1.0 ms | 1.4 ms | 1.2 ms | 1.3 ms | n/a |
+
+¹ these two tell their listeners a moment later, and the harness waits for it: about 1 ms of the number is that wait.
+
+What it says, plainly:
+
+- Libraries that **copy the state** (Zustand, Redux Toolkit) get slower with the size: a change costs time in proportion to the number of rows. rawstate keeps the same cost at 1 000 and at 100 000 rows. For small states Zustand is as fast or faster, and much smaller.
+- Libraries that **change the state in place** (MobX, Valtio) are the fastest at one change. They give up immutable versions: no cheap "did it change", no snapshots, no atomic rollback.
+- Indexed lookup (`where`) is orders of magnitude faster than filtering, but in the others you can build an index yourself.
+- The price: rawstate is about **9 KB gzipped**, against 0.2 KB (Zustand), 1 KB (Valtio), 11 KB (Redux Toolkit), 16 KB (MobX), 33 KB (TanStack DB). It is the size of the whole thing: collections, relations, rules, transactions, validation.
+
 ## What still depends on the size
 
 As it must, or nearly:

@@ -1,0 +1,20 @@
+{
+  "name": "rawstate-bench-compare",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "rawstate against Zustand, Redux Toolkit, Valtio and MobX on the same scenarios. Not published.",
+  "scripts": {
+    "bench": "node run.mjs"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2",
+    "@tanstack/db": "^0.13.0",
+    "mobx": "^6",
+    "valtio": "^2",
+    "zustand": "^5"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

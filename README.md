@@ -2,6 +2,11 @@
 
 **Raw state, kept honest.** Your data stays raw: plain objects, rows and values that you can print, compare, serialize and send anywhere. rawstate does not wrap it. It puts the guarantees around it: types, atomic changes, references that stay valid, borders that are checked.
 
+[![npm](https://img.shields.io/npm/v/rawstate?color=0a7ea4)](https://www.npmjs.com/package/rawstate)
+[![gzip size](https://img.shields.io/bundlephobia/minzip/rawstate?label=gzip)](https://bundlephobia.com/package/rawstate)
+[![types](https://img.shields.io/npm/types/rawstate)](https://www.npmjs.com/package/rawstate)
+[![license](https://img.shields.io/npm/l/rawstate?color=informational)](LICENSE)
+
 ```
 npm i rawstate
 ```
@@ -17,7 +22,7 @@ Most state libraries wrap your data in something: observables, proxies, classes,
 3. **Relations are declared, not wired by hand.** Instead of effects that keep two lists in step, you say how things relate (a credit belongs to a user, a debt is the sum of credits), like a schema in a database, and the store keeps it true.
 4. **Changes are atomic.** A transaction is all or nothing, and subscribers are told once, when everything is already written.
 5. **The borders are checked.** Data from a server, a storage or another tab comes with a mark of where it came from and is checked by your schema. It is never trusted blindly and never counted twice.
-6. **Small and fast.** A change costs the same in 100 rows and in 100 000.
+6. **Small and fast.** A change costs the same in 100 rows and in 100 000 ([numbers](#how-it-compares)).
 
 ## A small example
 
@@ -86,6 +91,28 @@ function Counter() {
 }
 ```
 
+## How it compares
+
+Honestly, not a replacement for everything. rawstate is for **data with structure**: tables, references between them, totals that follow the data, changes that must be all or nothing.
+
+| | rawstate | Zustand | Redux Toolkit | MobX / Valtio |
+| --- | :---: | :---: | :---: | :---: |
+| Wrong key or type in an action does not compile | yes | partly | yes | no |
+| Frozen state, no change by accident | yes (dev) | no | yes | no |
+| Tables with ids and indexes | yes | by hand | adapter, no indexes | by hand |
+| References that stay valid (cascade, restrict) | yes | no | no | no |
+| Totals that follow the data (`rollup`, `increment`) | yes | by hand | by hand | `computed` |
+| Atomic transaction with rollback | yes | no | one `dispatch` | no rollback |
+| A slow async action can not lose an update | yes | no | no | no |
+| Data from outside checked by a schema, with its origin | yes | no | no | no |
+| Saved to IndexedDB, tabs in sync | `rawstate-idb` | plugins | `redux-persist` | plugins |
+| Size, gzipped | 9 KB | 0.2 KB | 11 KB | 1–16 KB |
+| One change in 100 000 rows | 0.01 ms | 41 ms | 94 ms | 0.001–1 ms |
+
+Measured against TanStack DB too (see [Performance](docs/performance.md)). The table above is how each library is used out of the box; with plugins and your own code most of "no" can be built.
+
+If your state is a modal, a theme and a few flags, use [Zustand](https://github.com/pmndrs/zustand): it is smaller and simpler. If it is a normalized model of the world that you now keep in step by hand, this is what rawstate is for. Details and the full tables: [Performance](docs/performance.md); the benchmark is in the repository ([`bench-compare`](bench-compare/README.md)).
+
 ## What is in it
 
 - **Slices**: typed states and actions; async actions that can not lose an update ([docs](docs/slices.md)).
@@ -97,7 +124,13 @@ function Counter() {
 - **Many stores**: blueprints, snapshots, `dispose`, server rendering ([docs](docs/stores-and-ssr.md)).
 - **Fast**: one change in 100 000 rows takes microseconds ([numbers](docs/performance.md)).
 
-Also: [`rawstate-react`](https://www.npmjs.com/package/rawstate-react) (hooks) and [`rawstate-idb`](https://www.npmjs.com/package/rawstate-idb) (save to IndexedDB, keep tabs in sync).
+Around it:
+
+| package | what it does |
+| --- | --- |
+| [`rawstate-react`](https://www.npmjs.com/package/rawstate-react) | hooks and store scopes for React 18 and 19 |
+| [`rawstate-idb`](https://www.npmjs.com/package/rawstate-idb) | save to IndexedDB, load at start, keep tabs in sync |
+| [`rawstate-devtools`](https://www.npmjs.com/package/rawstate-devtools) | every commit with its origin, time travel, a panel in the page, Redux DevTools |
 
 ## Live demo
 
@@ -106,6 +139,10 @@ Every feature running in the browser, with a log of each change: [rawstate-demo]
 ## Documentation
 
 [Getting started](docs/getting-started.md) · [Slices](docs/slices.md) · [Collections](docs/collections.md) · [Relations and rules](docs/relations-and-rules.md) · [Transactions and sync](docs/transactions-and-sync.md) · [Validation](docs/validation.md) · [Stores and SSR](docs/stores-and-ssr.md) · [Testing](docs/testing.md) · [Performance](docs/performance.md) · [API](docs/api.md)
+
+## Versions
+
+rawstate follows [semantic versioning](https://semver.org) from 1.0.0: the API in the [docs](docs/api.md) does not break inside 1.x. The changes are in the [changelog](CHANGELOG.md).
 
 ## Requirements
 
