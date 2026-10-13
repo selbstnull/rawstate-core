@@ -3,7 +3,7 @@
 `createStore` makes one store from slice instances, and a slice can belong to only one store. When you need many stores (one per request on a server, per test, per session, per mounted module) describe the store once with `defineStore`.
 
 ```ts
-import { defineStore, createCollection, relation, rollup, sum } from "rawstate";
+import { defineStore, createCollection, relation, rollup, sum } from "rawstate-core";
 
 export const appStore = defineStore({
   slices: () => ({                                    // new slices for every store

@@ -3,7 +3,7 @@
 Because a collection with relations and rules behaves like a small database, you can test business logic without a real one.
 
 ```ts
-import { defineStore, createCollection, relation, rollup, sum } from "rawstate";
+import { defineStore, createCollection, relation, rollup, sum } from "rawstate-core";
 
 const bank = defineStore({
   slices: () => ({

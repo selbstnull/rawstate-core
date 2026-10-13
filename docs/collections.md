@@ -3,7 +3,7 @@
 A collection is a table of rows with an id: ready actions, reading by id, one row to watch, indexes.
 
 ```ts
-import { createCollection } from "rawstate";
+import { createCollection } from "rawstate-core";
 
 interface User { id: string; name: string; age: number }
 

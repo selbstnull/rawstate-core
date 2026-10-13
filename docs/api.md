@@ -1,6 +1,6 @@
 # API
 
-Everything is imported from `rawstate`. Types are exported too.
+Everything is imported from `rawstate-core`. Types are exported too.
 
 ## Slices
 

@@ -1,7 +1,7 @@
 # Getting started
 
 ```
-npm i rawstate
+npm i rawstate-core
 ```
 
 ## The idea
@@ -17,7 +17,7 @@ Everything that changes data is an **action** (or a transaction that calls actio
 ## A slice
 
 ```ts
-import { createSlice } from "rawstate";
+import { createSlice } from "rawstate-core";
 
 const cart = createSlice({
   state: { price: 10, count: 1 },
@@ -40,7 +40,7 @@ off();
 ## A value calculated from states
 
 ```ts
-import { view } from "rawstate";
+import { view } from "rawstate-core";
 
 const total = view(
   [cart.getState("price"), cart.getState("count")],
@@ -56,7 +56,7 @@ A view is calculated only when a source changes. Views can be made of other view
 ## A store and a transaction
 
 ```ts
-import { createStore } from "rawstate";
+import { createStore } from "rawstate-core";
 
 const store = createStore({ cart });
 

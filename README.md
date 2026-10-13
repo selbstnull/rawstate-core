@@ -1,14 +1,14 @@
-# rawstate
+# rawstate-core
 
-**Raw state, kept honest.** Your data stays raw: plain objects, rows and values that you can print, compare, serialize and send anywhere. rawstate does not wrap it. It puts the guarantees around it: types, atomic changes, references that stay valid, borders that are checked.
+The core of **rawstate**. **Raw state, kept honest.** Your data stays raw: plain objects, rows and values that you can print, compare, serialize and send anywhere. rawstate does not wrap it. It puts the guarantees around it: types, atomic changes, references that stay valid, borders that are checked.
 
-[![npm](https://img.shields.io/npm/v/rawstate?color=0a7ea4)](https://www.npmjs.com/package/rawstate)
-[![gzip size](https://img.shields.io/bundlephobia/minzip/rawstate?label=gzip)](https://bundlephobia.com/package/rawstate)
-[![types](https://img.shields.io/npm/types/rawstate)](https://www.npmjs.com/package/rawstate)
-[![license](https://img.shields.io/npm/l/rawstate?color=informational)](LICENSE)
+[![npm](https://img.shields.io/npm/v/rawstate-core?color=0a7ea4)](https://www.npmjs.com/package/rawstate-core)
+[![gzip size](https://img.shields.io/bundlephobia/minzip/rawstate-core?label=gzip)](https://bundlephobia.com/package/rawstate-core)
+[![types](https://img.shields.io/npm/types/rawstate-core)](https://www.npmjs.com/package/rawstate-core)
+[![license](https://img.shields.io/npm/l/rawstate-core?color=informational)](LICENSE)
 
 ```
-npm i rawstate
+npm i rawstate-core
 ```
 
 No dependencies, about 9 KB gzipped, works in browsers and Node.
@@ -27,7 +27,7 @@ Most state libraries wrap your data in something: observables, proxies, classes,
 ## A small example
 
 ```ts
-import { createSlice, createStore } from "rawstate";
+import { createSlice, createStore } from "rawstate-core";
 
 const counter = createSlice({
   state: { count: 0 },
@@ -48,7 +48,7 @@ An action gets the current (read-only) state and returns **what changes**. That 
 ## Data with links
 
 ```ts
-import { createCollection, createStore, relation, increment } from "rawstate";
+import { createCollection, createStore, relation, increment } from "rawstate-core";
 
 const users = createCollection<User>()({ key: "id" });
 const credits = createCollection<Credit>()({ key: "id" });

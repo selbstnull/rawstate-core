@@ -1,5 +1,5 @@
 {
-  "name": "rawstate",
+  "name": "rawstate-core",
   "version": "1.0.0",
   "description": "Raw state, kept honest: plain data with types, atomic transactions, relations and rules, and checked borders. No dependencies, about 9 KB gzipped.",
   "keywords": [

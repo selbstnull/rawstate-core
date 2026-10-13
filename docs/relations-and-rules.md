@@ -7,7 +7,7 @@ Both are declared in one place, the options of `createStore` (or `defineStore`).
 A relation says that a field of one collection holds the id of a row of another, like a foreign key.
 
 ```ts
-import { createStore, relation } from "rawstate";
+import { createStore, relation } from "rawstate-core";
 
 const store = createStore(
   { users, credits, payments },
@@ -38,7 +38,7 @@ A rule says how the store reacts to changes. It gets the changed rows and return
 ### Templates
 
 ```ts
-import { increment, decrement, rollup, count, sum } from "rawstate";
+import { increment, decrement, rollup, count, sum } from "rawstate-core";
 
 rules: [
   // the debt grows by the amount of a credit, goes back when it is removed or changed
@@ -60,7 +60,7 @@ Which one? `increment` follows changes and works with any `to`. `rollup` is exac
 ### Your own rules
 
 ```ts
-import { rule, op } from "rawstate";
+import { rule, op } from "rawstate-core";
 
 rule(credits, {
   inserted: (credit) => [
