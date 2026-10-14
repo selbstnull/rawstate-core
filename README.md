@@ -13,6 +13,11 @@ npm i rawstate-core
 
 No dependencies, about 9 KB gzipped, works in browsers and Node.
 
+> **Support rawstate-core.** It is free and made in spare time. If it saves you time, donations are what keep it going.
+> USDT (TRC-20): `TQbts9Bj1LZJQE8oGbSbo1Qg6R3Co2k8jX` ([details](DONATE.md))
+>
+> <img src="https://raw.githubusercontent.com/selbstnull/rawstate-core/main/.github/donate-usdt-trc20.png" alt="USDT TRC-20 QR code" width="120">
+
 ## The idea
 
 Most state libraries wrap your data in something: observables, proxies, classes, a store object with hidden machinery. rawstate does the opposite. The state is **raw**, and what is around it is a few things you **declare** instead of writing by hand:

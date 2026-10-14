@@ -35,6 +35,10 @@
   },
   "license": "Apache-2.0",
   "author": "nullselbst",
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/selbstnull/rawstate-core/blob/main/DONATE.md"
+  },
   "sideEffects": false,
   "main": "dist/index.js",
   "module": "dist/index.mjs",
